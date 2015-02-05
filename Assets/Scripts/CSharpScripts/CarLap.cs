@@ -5,7 +5,10 @@ using System.Collections;
 public class CarLap : MonoBehaviour {
 
 	int lapNum = 0;
+	int state = 0;
+
 	public GameObject finishLine;
+	public GameObject check2;
 	public GameObject theHud;
 	public int maxLaps;
 	// Use this for initialization
@@ -20,11 +23,18 @@ public class CarLap : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if( other.gameObject == finishLine)
+		if( other.gameObject == finishLine && state == 0)
 		{
 			lapNum++;
 			UnityEngine.UI.Text s = theHud.GetComponent<Text>();
 			s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
+			state = 1;
+			print ("Hit check 1");
+		}
+		else if( other.gameObject == check2)
+		{
+			print ("Hit check 2");
+			state = 0;
 		}
 	}
 }
