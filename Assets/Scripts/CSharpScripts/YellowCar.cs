@@ -44,7 +44,7 @@ public class YellowCar : MonoBehaviour {
 
 
 		transform.Translate(Vector3.forward * Time.deltaTime * vel);
-		transform. 
+
 	
 	}
 
