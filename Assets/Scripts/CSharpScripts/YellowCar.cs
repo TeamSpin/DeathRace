@@ -3,9 +3,10 @@ using System.Collections;
 
 public class YellowCar : MonoBehaviour {
 
-	int vel = 0;
+	private float vel = 0;
 	public int maxSpeed;
-	int revSpeed = 8;
+	private int revSpeed = 8;
+	private bool is_colliding = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class YellowCar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey("up"))
+		if(Input.GetKey("up") && !is_colliding)
 		{
 			vel++;
 		}
@@ -22,12 +23,20 @@ public class YellowCar : MonoBehaviour {
 		{
 			vel--;
 		}
+		else
+		{
+			if( vel > 0)
+				vel -= 0.1f;
+			else if( vel < 0)
+				vel += 0.1f;
+		}
 
-		if( Input.GetKey("left") && vel != 0)
+
+		if( Input.GetKey("left") && Mathf.Abs(vel) > 4)
 		{
 			transform.Rotate(Vector3.up, -1);
 		}
-		else if( Input.GetKey("right") && vel != 0)
+		else if( Input.GetKey("right") && Mathf.Abs(vel) > 4)
 		{
 			transform.Rotate(Vector3.up, 1);
 		}
@@ -37,8 +46,8 @@ public class YellowCar : MonoBehaviour {
 
 		if( Input.GetKey("space"))
 		{
-			if(vel > 0) vel--;
-			else if(vel < 0) vel++;
+			if(vel > 0) vel = vel - 0.5f;
+			else if(vel < 0) vel = vel + 0.5f;
 		}
 
 
@@ -48,13 +57,25 @@ public class YellowCar : MonoBehaviour {
 	
 	}
 
-	void OnCollision(Collider other)
+	void OnCollisionEnter(Collision other)
 	{
 		if( other.gameObject.layer == 8)
 		{
-			if( vel > 0) vel = -1;
-			else if( vel < 0) vel = 1;
+			print ("hit a fence");
+
+			   vel = -1;
+			is_colliding = true;
 		}
+		else
+		{
+			is_colliding = false;
+		}
+
+	}
+
+	void OnCollisionExit(Collision other)
+	{
+		is_colliding = false;
 	}
 
 }

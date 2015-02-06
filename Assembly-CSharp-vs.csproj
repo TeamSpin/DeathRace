@@ -57,11 +57,18 @@
      <Compile Include="Assets\Scripts\CSharpScripts\CombineChildren.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\DisableObjects.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\EffectController.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\EnemyHealth.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\EnemyWeaponController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\Generate2DReflection.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MirrorReflection.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\PickupSpawner.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\PlayerWeaponController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\ToggleObjectTrigger.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\YellowCar.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\YellowCarAI.cs" />
+     <Compile Include="Assets\Shield Pack Free\MouseRotationScript.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\AerodynamicResistance.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\AntiRollBar.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\CarController.cs" />
@@ -79,6 +86,7 @@
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\ColorCorrectionEffect_26.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\GlowEffectDownsample_26.shader" />
+     <None Include="Assets\Shield Pack Free\ReadMe.txt" />
      <None Include="Assets\Pro Standard Assets\Image Based\SSAOShader.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Luminance.shader" />

@@ -71,6 +71,7 @@
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\ColorCorrectionEffect_26.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\GlowEffectDownsample_26.shader" />
+     <None Include="Assets\Shield Pack Free\ReadMe.txt" />
      <None Include="Assets\Pro Standard Assets\Image Based\SSAOShader.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Luminance.shader" />
