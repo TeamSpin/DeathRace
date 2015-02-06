@@ -29,10 +29,7 @@ public class YellowCar : MonoBehaviour {
 		}
 		else if( Input.GetKey("right") && vel != 0)
 		{
-
 			transform.Rotate(Vector3.up, 1);
-
-
 		}
 
 		if( vel > maxSpeed) vel = maxSpeed;
@@ -47,6 +44,7 @@ public class YellowCar : MonoBehaviour {
 
 
 		transform.Translate(Vector3.forward * Time.deltaTime * vel);
+		transform. 
 	
 	}
 
@@ -54,7 +52,8 @@ public class YellowCar : MonoBehaviour {
 	{
 		if( other.gameObject.layer == 8)
 		{
-			vel = 0;
+			if( vel > 0) vel = -1;
+			else if( vel < 0) vel = 1;
 		}
 	}
 
