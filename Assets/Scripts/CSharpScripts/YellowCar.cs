@@ -3,28 +3,30 @@ using System.Collections;
 
 public class YellowCar : MonoBehaviour {
 
-	public GameObject waypoint;
+	public Transform waypoint;
+	public Transform waypoint2;
 	int vel = 0;
 	public int maxSpeed;
 	int revSpeed = 8;
+	bool way1;
+	bool way2;
 
 	// Use this for initialization
 	void Start () {
-	
+		way1 = true;
+		way2 = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float temp = Mathf.Abs(waypoint.rigidbody.position.z);
-		float temp2 = Mathf.Abs (rigidbody.position.z);
-		vel = (int)(((Mathf.Abs (temp - temp2)) / (temp + temp2)) * maxSpeed);
-		if( waypoint.rigidbody.position.x <= rigidbody.position.x && vel != 0)
-		{
-			transform.Rotate(Vector3.up, -1);
+		if(way1){
+			Vector3 targetDir = waypoint.position - transform.position;
+			float step = maxSpeed * Time.deltaTime;
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
+			transform.rotation = Quaternion.LookRotation(newDir);
+			transform.position = Vector3.MoveTowards(transform.position, waypoint.position, step);
 		}
-		else if( waypoint.rigidbody.position.x >= rigidbody.position.x && vel != 0)
-		{
-			transform.Rotate(Vector3.up, 1);
+		if(way2){
 		}
 
 		if( vel > maxSpeed) vel = maxSpeed;
