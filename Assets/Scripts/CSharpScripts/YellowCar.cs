@@ -3,31 +3,33 @@ using System.Collections;
 
 public class YellowCar : MonoBehaviour {
 
-	public Transform waypoint;
-	public Transform waypoint2;
-	int vel = 0;
-	public int maxSpeed;
-	int revSpeed = 8;
-	bool way1;
-	bool way2;
+	Transform waypoints;
+	int vel;
+	int i;
+	int maxSpeed;
+	int revSpeed;
 
 	// Use this for initialization
 	void Start () {
-		way1 = true;
-		way2 = false;
+		maxSpeed = 100;
+		vel = 0;
+		revSpeed = 8;
+		waypoints = (GameObject.FindWithTag ("waypoints")).transform;
+		i = 0;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		if(way1){
-			Vector3 targetDir = new Vector3(waypoint.position.x - transform.position.x,0,waypoint.position.z - transform.position.z);
-			float step = maxSpeed * Time.deltaTime;
-			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
-			transform.rotation = Quaternion.LookRotation(newDir);
-			transform.position = Vector3.MoveTowards(transform.position, waypoint.position, step);
-		}
-		if(way2){
-		}
+	void LateUpdate () {
+		if(vel < maxSpeed) vel++;
+		Transform waypoint = waypoints.GetChild (i);
+		Vector3 targetDir = new Vector3(waypoint.position.x - transform.position.x, 0,
+		                                waypoint.position.z - transform.position.z);
+		float step = vel * Time.deltaTime;
+		var q = Quaternion.LookRotation(waypoint.position - transform.position);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, q, step);
+		transform.position = Vector3.MoveTowards(transform.position, waypoint.position, step);
+		if(targetDir == Vector3.zero && i < waypoints.childCount) i++;
+		if (i == waypoints.childCount) i = 0;
 
 		if( vel > maxSpeed) vel = maxSpeed;
 		else if( vel < -revSpeed) vel = -revSpeed;
@@ -37,12 +39,6 @@ public class YellowCar : MonoBehaviour {
 			if(vel > 0) vel--;
 			else if(vel < 0) vel++;
 		}
-
-
-
-		transform.Translate(Vector3.forward * Time.deltaTime * vel);
-
-	
 	}
 
 	void OnCollision(Collider other)
