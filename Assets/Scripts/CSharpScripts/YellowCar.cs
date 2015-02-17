@@ -20,7 +20,7 @@ public class YellowCar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(way1){
-			Vector3 targetDir = waypoint.position - transform.position;
+			Vector3 targetDir = new Vector3(waypoint.position.x - transform.position.x,0,waypoint.position.z - transform.position.z);
 			float step = maxSpeed * Time.deltaTime;
 			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
 			transform.rotation = Quaternion.LookRotation(newDir);
