@@ -19,13 +19,14 @@ public class YellowCar : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void LateUpdate () {
-		if(vel < maxSpeed) vel++;
+	void Update () {
+		float step = vel * Time.deltaTime;
 		Transform waypoint = waypoints.GetChild (i);
 		Vector3 targetDir = new Vector3(waypoint.position.x - transform.position.x, 0,
 		                                waypoint.position.z - transform.position.z);
-		float step = vel * Time.deltaTime;
 		var q = Quaternion.LookRotation(waypoint.position - transform.position);
+
+		if(vel < maxSpeed) vel++;
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, q, step);
 		transform.position = Vector3.MoveTowards(transform.position, waypoint.position, step);
 		if(targetDir == Vector3.zero && i < waypoints.childCount) i++;
