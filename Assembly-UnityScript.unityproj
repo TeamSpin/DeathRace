@@ -48,6 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\AnimationScrollTexture.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\AnimationSpriteSheet.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\DeadTime.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\SampleSceneGUI.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\StopCAM.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\VisibleBG.js" />
      <Compile Include="Assets\My_Car\SoundToggler.js" />
      <Compile Include="Assets\Scripts\JavaScripts\BumpTextureTileAnimation.js" />
      <Compile Include="Assets\Scripts\JavaScripts\Car.js" />

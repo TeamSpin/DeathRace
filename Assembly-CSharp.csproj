@@ -49,6 +49,7 @@
      <Compile Include="Assets\Checkpoint1.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
+     <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
      <Compile Include="Assets\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BirdsBehaviour.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BlobShadowController.cs" />
@@ -65,6 +66,7 @@
      <Compile Include="Assets\Scripts\CSharpScripts\PickupSpawner.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PlayerWeaponController.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\RocketController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\ToggleObjectTrigger.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\YellowCar.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\YellowCarAI.cs" />
