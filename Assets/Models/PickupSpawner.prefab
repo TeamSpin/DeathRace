@@ -36,16 +36,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 127718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6b0045c70973447b8089322f8aca1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 04cee0e9a43355444b35a3fe472dbb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInterval: 3
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnItem:
-  - {fileID: 165752, guid: 5c58790d2cce4714d896dc126ba379da, type: 2}
-  - {fileID: 164772, guid: 3c1b3c1165ec0794eb90f52414c217aa, type: 2}
+  spawnPoints: []
+  spawnItem: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

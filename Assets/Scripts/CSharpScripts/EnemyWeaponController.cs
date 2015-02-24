@@ -11,12 +11,10 @@ public class EnemyWeaponController : MonoBehaviour {
 	
 	
 	public float detectionAngle = 60.0f;
-	public int detectionDist = 30;
-	
-	
+	public int detectionDist = 50;
 	
 	public bool gunEnabled = true;
-	public int numBullets = 50;
+	public int numBullets = 500;
 	float range = 50f;
 	float effectsDisplayTime = 0.2f;
 	
@@ -24,7 +22,7 @@ public class EnemyWeaponController : MonoBehaviour {
 	Ray shootRay;
 	RaycastHit shootHit;
 	int shootableMask;
-	List<GameObject> shootableTargets;
+	List<GameObject> shootableTargets = new List<GameObject>();
 	
 	//ParticleSystem gunParticles;
 	LineRenderer MgunLine;
@@ -34,13 +32,39 @@ public class EnemyWeaponController : MonoBehaviour {
 	
 	void Awake ()
 	{
-		shootableMask = LayerMask.GetMask ("Player");
-		shootableTargets = grabTargets();
-		//gunParticles = GetComponent<ParticleSystem> ();
+		shootableMask = LayerMask.GetMask ("Cars");
+		//MgunLine = gameObject.AddComponent<LineRenderer>();
 		MgunLine = GetComponent <LineRenderer> ();
-		MgunAudio = GetComponent<AudioSource> ();
-		MgunLight = GetComponent<Light> ();
+		
+		SetUpTargets();		
+		SetUpWeapons();
+//		print ("# tartgets = " + shootableTargets.Count );
+		
+		//for( int i = 0; i < shootableTargets.Count; i++ )
+			//print (shootableTargets[i].ToString());
+		
+		//shootableTargets = grabTargets();
+		//gunParticles = GetComponent<ParticleSystem> ();
+		//MgunAudio = GetComponent<AudioSource> ();
+		//MgunLight = GetComponent<Light> ();
 		//Physics.IgnoreLayerCollision( LayerMask.GetMask("EnemyCars"),LayerMask.GetMask("Default"),true);
+	}
+	
+	void SetUpWeapons()
+	{
+		MgunLine.material = new Material(Shader.Find("Particles/Additive"));
+		MgunLine.SetWidth(.1f,.1f);
+		MgunLine.SetColors( new Color( 1.0f, 1.0f, 1.0f ), new Color( 1.0f, 1.0f, 1.0f) );
+	}
+	
+	void SetUpTargets() 
+	{
+		GameObject[] AIS = GameObject.FindGameObjectsWithTag("AICar");
+		for( int i = 0; i < AIS.Length; i++ )
+			if( AIS[i].gameObject.transform.position != transform.position )
+				shootableTargets.Add(AIS[i]);
+		GameObject me = GameObject.FindGameObjectWithTag("Player");
+		shootableTargets.Add(me);
 	}
 	
 	
@@ -52,65 +76,44 @@ public class EnemyWeaponController : MonoBehaviour {
 		{
 			if( numBullets > 0 && timer >= timeBetweenBullets )//player in front of
 			{
-//				bool go = shouldIFire();
-//				print(go);
-//				print (shootableTargets.Count);
-//				if( go  )
-//				{
-//					ShootMgun();
-//				}
+				if( shouldIFire() )
+				{
+					ShootMgun();
+				}
 			}
 		}
 		if(timer >= timeBetweenBullets * effectsDisplayTime)	//Disable to toggle line to look like gunfire
 		{
 			MgunLine.enabled = false;	
-			MgunLight.enabled = false;
+			//MgunLight.enabled = false;
 		}
 	}
 	
 	bool shouldIFire() 
 	{
 		RaycastHit fireHit;
-		shootableTargets = grabTargets();
+		Vector3 looking = transform.forward;
 		for( int i = 0; i < shootableTargets.Count; i++ ) 
 		{
-			Vector3 fireDirection = shootableTargets[i].transform.position + Vector3.up/2;
-			print( fireDirection.ToString() );
-			if ((Vector3.Angle(fireDirection, transform.forward)) < detectionAngle * .5f )
+			Vector3 fireDirection = shootableTargets[i].transform.position - transform.position;
+			float angle = Vector3.Angle( fireDirection, looking );
+			
+			//print( looking.ToString() + ", " + fireDirection.ToString() + " = " + angle );
+			if (angle < (detectionAngle * .5f) )
 			{
-				print ("got to hereaoeuhgalehglakhgeklhgealjhge");
-				if (Physics.Raycast(transform.position, fireDirection, out fireHit, detectionDist))
-				{
+//				print ("THE ANGLE IS DETECTED" + Time.deltaTime.ToString());
+				if( Vector3.Distance( transform.position, shootableTargets[i].transform.position ) < detectionDist )
 					return true;
-				}
+//				if (Physics.Raycast(transform.position, fireDirection, out fireHit, detectionDist))
+//				{
+//					return true;
+//				}
 			}
 		}
 		return false;
 		
 	}
 	
-	List<GameObject> grabTargets() 
-	{
-		GameObject[] allObjects = FindObjectsOfType(typeof(GameObject)) as GameObject[]; 
-		List <GameObject> fireable = new List<GameObject>();
-		for (int i = 0; i < allObjects.Length; i++) 
-		{ 
-			if ((allObjects[i].layer == 8 || allObjects[i].layer == 9) && allObjects[i].collider != null ) 
-			{ 
-				fireable.Add(allObjects[i]);
-				//print(LayerMask.GetMask("Player"));
-				//print(LayerMask.GetMask("EnemyCars"));
-				//allObjects[i].
-				
-			} 
-		} 
-		
-		if (fireable.Count == 0) 
-		{ 
-			return null; 
-		} 
-		return fireable; 
-	}
 	
 	void ShootMgun ()
 	{
@@ -120,8 +123,8 @@ public class EnemyWeaponController : MonoBehaviour {
 		}
 		
 		timer = 0f;  //Reset the timer to not fire insanley fast
-		MgunLight.enabled = true; //Enable line rendered, looks like bullet fire path
-		MgunAudio.Play ();    //Play random sound bit
+		//MgunLight.enabled = true; //Enable line rendered, looks like bullet fire path
+		//MgunAudio.Play ();    //Play random sound bit
 		
 		//gunParticles.Stop ();
 		//gunParticles.Play ();
@@ -151,22 +154,7 @@ public class EnemyWeaponController : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider collider)
 	{
-		if( collider.gameObject.tag == "Weapon" )
-		{
-			numBullets = 50;
-			gunEnabled = true;
-			collider.gameObject.SetActive(false);
-		}
-		if( collider.gameObject.tag == "Defense" )
-		{
-			numBullets = 0;
-			gunEnabled = false;
-			collider.gameObject.SetActive(false);
-			
-			
-			EnemyHealth enemyHealth = gameObject.GetComponentInParent<EnemyHealth>();
-			enemyHealth.HealCar(20); 
-		}
+
 	}
 	
 //	void OnCollisionEnter(Collision collision) 		//Does this calculate twice! Depends on AI
