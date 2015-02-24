@@ -4,6 +4,7 @@ using System.Collections;
 public class YellowCar : MonoBehaviour {
 
 	Transform waypoints;
+	Vector3 velocity;
 	int vel;
 	int i;
 	int maxSpeed;
@@ -11,7 +12,8 @@ public class YellowCar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		maxSpeed = 100;
+		velocity = Vector3.zero;
+		maxSpeed = 50;
 		vel = 0;
 		revSpeed = 8;
 		waypoints = (GameObject.FindWithTag ("waypoints")).transform;
@@ -28,10 +30,13 @@ public class YellowCar : MonoBehaviour {
 
 		if(vel < maxSpeed) vel++;
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, q, step);
-		transform.position = Vector3.MoveTowards(transform.position, waypoint.position, step);
-		if(targetDir == Vector3.zero && i < waypoints.childCount) i++;
+//		transform.rotation = Quaternion.Slerp(transform.rotation, q, step);
+//		transform.position = Vector3.MoveTowards (transform.position, waypoint.position, step);
+		transform.position = Vector3.SmoothDamp (transform.position, waypoint.position, ref velocity,0.8f);
+		if(targetDir.magnitude <= 10.0f  && i < waypoints.childCount) i++;
 		if (i == waypoints.childCount) i = 0;
 
+//		transform.rotation = Quaternion.Slerp (transform.rotation, waypoint.rotation, step);
 		if( vel > maxSpeed) vel = maxSpeed;
 		else if( vel < -revSpeed) vel = -revSpeed;
 
