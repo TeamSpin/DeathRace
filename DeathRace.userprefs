@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NewCarCam.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CSharpScripts\YellowCar.cs">
     <Files>
-      <File FileName="Assets\NewCarCam.cs" Line="28" Column="81" />
-      <File FileName="Assets\Scripts\CSharpScripts\YellowCar.cs" Line="112" Column="55" />
+      <File FileName="Assets\NewCarCam.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CSharpScripts\YellowCar.cs" Line="240" Column="52" />
       <File FileName="Assets\Scripts\CSharpScripts\CarLap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CSharpScripts\PlayerWeaponController.cs" Line="1" Column="1" />
     </Files>

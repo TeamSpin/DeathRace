@@ -12,24 +12,28 @@ public class YellowCar : MonoBehaviour {
 
 
 	private int off_track_speed;
-	private int revSpeed;
+	private float revSpeed;
 	private float vel = 0;
 	private bool on_ground = true;
-	private int curr_max_speed;
+	private bool off_road = true;
+	private float curr_max_speed;
 	private float curr_wheel_angle_left;
 	private float curr_wheel_angle_right;
 	private float max_wheel_angle;
-	private float cam_angle;
+	private float boost_time;
+	private bool is_boosting;
+	private float off_track_speed_boost;
 
 	// Use this for initialization
 	void Start () {
 		off_track_speed = 8;
+		off_track_speed_boost = 16;
 		curr_max_speed = off_track_speed;
 		revSpeed = curr_max_speed / 3;
 		curr_wheel_angle_left = 0;
 		curr_wheel_angle_right = 0;
 		max_wheel_angle = 30;
-		cam_angle = 0;
+
 	}
 
 	public float get_speed()
@@ -37,56 +41,19 @@ public class YellowCar : MonoBehaviour {
 		return Mathf.Abs (vel);
 	}
 
+
+	public void speed_boost()
+	{
+		boost_time = (0.0f);
+	}
+
 	// Update is called once per frame
 	void Update () {
 
-		//update camera for steering
-		var car_cam = transform.Find("Camera");
+		boost_time += Time.deltaTime;
 
-
-		/*if(Input.GetKey("right"))
-		{
-			if(cam_angle == 0)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, 30);
-
-			}
-			else if( cam_angle == -30)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, 60);
-
-			}
-			cam_angle = 30;
-		}
-		else if( Input.GetKey("left") )
-		{
-			if(cam_angle == 0)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, -30);
-				
-			}
-			else if( cam_angle == 30)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, -60);
-				
-			}
-			cam_angle = -30;
-		}
-		else
-		{
-			if(cam_angle == -30)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, 30);
-				
-			}
-			else if( cam_angle == 30)
-			{
-				car_cam.RotateAround( transform.renderer.bounds.center, Vector3.up, -30);
-				
-			}
-			cam_angle = 0;
-		}
-		//camera*/
+		if(boost_time < 0.1f && !off_road) curr_max_speed += 0.1f;
+		else if(boost_time >= 0.1f && curr_max_speed > maxSpeed) curr_max_speed -= 1f;
 
 		//update velocity
 		if(Input.GetKey("up") && on_ground)
@@ -110,6 +77,7 @@ public class YellowCar : MonoBehaviour {
 		if(Mathf.Abs(vel) > 15) rotation_angle = 0.7f;
 		else if(Mathf.Abs(vel) > 25) rotation_angle = 0.2f;
 		else if(Mathf.Abs(vel) > 35) rotation_angle = 0.05f;
+		else if(Mathf.Abs(vel) > 45) rotation_angle = 0.01f;
 		//steering input
 		if( Input.GetKey("left") && Mathf.Abs(vel) > 2 && on_ground)
 		{
@@ -261,6 +229,7 @@ public class YellowCar : MonoBehaviour {
 			print ("collided with road");
 			curr_max_speed = maxSpeed;
 			revSpeed = curr_max_speed / 3;
+			off_road = false;
 		}
 	}
 
@@ -268,12 +237,20 @@ public class YellowCar : MonoBehaviour {
 	{
 //		if(other == ground.collider)
 //			on_ground = false;
-		if( other.gameObject.layer == 12)
+		if( other.gameObject.layer == 12 && boost_time >= 0.1f)
 		{
 			print ("off road");
 			curr_max_speed = off_track_speed;
 			revSpeed = curr_max_speed / 3;
+			off_road = true;
 		}
+		else if( other.gameObject.layer == 12 && boost_time < 0.1f)
+		{
+			curr_max_speed = off_track_speed_boost;
+			revSpeed = curr_max_speed / 3;
+			off_road = true;
+		}
+
 	}
 
 
