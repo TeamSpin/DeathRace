@@ -9,6 +9,7 @@ public class CarLap : MonoBehaviour {
 
 	public GameObject finishLine;
 	public GameObject check2;
+	public GameObject check3;
 	public GameObject theHud;
 	public int maxLaps;
 	// Use this for initialization
@@ -23,18 +24,51 @@ public class CarLap : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if( other.gameObject == finishLine && state == 0)
+
+		if( other.gameObject == finishLine)
 		{
-			lapNum++;
-			UnityEngine.UI.Text s = theHud.GetComponent<Text>();
-			s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
-			state = 1;
-			print ("Hit check 1");
+			//moving across finish line forwards
+			if(state == 0)
+			{
+				lapNum++;
+				UnityEngine.UI.Text s = theHud.GetComponent<Text>();
+				s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
+				state = 1;
+				print ("Hit check 1");
+			}
+			//moving across finish line backwards
+			else if(state == 1)
+			{
+				lapNum--;
+				UnityEngine.UI.Text s = theHud.GetComponent<Text>();
+				s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
+				state = 0;
+				print ("Hit check 1");
+			}
 		}
+
 		else if( other.gameObject == check2)
 		{
-			print ("Hit check 2");
-			state = 0;
+			if( state == 1)//moving forward
+			{
+				state = 2;
+			}
+			else if( state == 2)//backward
+			{
+				state = 1;
+			}
+		}
+
+		else if( other.gameObject == check3)
+		{
+			if( state == 2)//forward
+			{
+				state = 0;
+			}
+			else if( state == 0)//backward
+			{
+				state = 2;
+			}
 		}
 	}
 }

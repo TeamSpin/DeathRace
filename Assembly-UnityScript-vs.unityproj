@@ -77,6 +77,7 @@
      <None Include="Assets\Pro Standard Assets\Image Based\TwirlEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\VortexEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\Wispy Sky\ReadMe.txt" />
      <None Include="Assets\Destroyed_city_FREE\Shaders\AlphaTest-DiffuseDoubleSide.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\EdgeDetectX.shader" />
  <Reference Include="UnityEngine.UI">

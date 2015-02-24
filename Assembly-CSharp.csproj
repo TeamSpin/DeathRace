@@ -46,10 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BackBump.cs" />
      <Compile Include="Assets\Checkpoint1.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
+     <Compile Include="Assets\FrontBump.cs" />
+     <Compile Include="Assets\LeftSide.cs" />
      <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\NewCarCam.cs" />
+     <Compile Include="Assets\RightSide.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BirdsBehaviour.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BlobShadowController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CarCamera.cs" />
@@ -97,6 +102,7 @@
      <None Include="Assets\Pro Standard Assets\Image Based\TwirlEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\VortexEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\Wispy Sky\ReadMe.txt" />
      <None Include="Assets\Destroyed_city_FREE\Shaders\AlphaTest-DiffuseDoubleSide.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\EdgeDetectX.shader" />
  <Reference Include="UnityEngine.UI">
