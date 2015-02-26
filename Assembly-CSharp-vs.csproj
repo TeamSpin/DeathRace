@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ChangeScenes.cs" />
      <Compile Include="Assets\Checkpoint1.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
@@ -56,12 +55,14 @@
      <Compile Include="Assets\Scripts\CSharpScripts\BlobShadowController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CarCamera.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CarLap.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\ChangeScenes.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CombineChildren.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\DisableObjects.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\EffectController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\EnemyWeaponController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\Generate2DReflection.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MirrorReflection.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PickupSpawner.cs" />
@@ -69,10 +70,10 @@
      <Compile Include="Assets\Scripts\CSharpScripts\PlayerWeaponController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\RocketController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\ToggleObjectTrigger.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\VolumeManager.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\YellowCar.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\YellowCarAI.cs" />
      <Compile Include="Assets\Shield Pack Free\MouseRotationScript.cs" />
-     <Compile Include="Assets\VolumeManager.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\AerodynamicResistance.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\AntiRollBar.cs" />
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\CarController.cs" />

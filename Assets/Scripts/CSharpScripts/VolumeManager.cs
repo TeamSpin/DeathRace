@@ -5,8 +5,22 @@ public class VolumeManager : MonoBehaviour
 {
 	public float fade;
 	public float default_volume = 1.0f;
+	public static VolumeManager menu_id {get; private set;};
  	bool music_status = true;
 
+	void Awake()
+	{
+		if(menu_id != null && menu_id != this)
+		{
+			Destroy(this.gameObject);
+			return;	
+		}
+		else
+		{
+			menu_id = this;
+		}
+		DontDestroyOnLoad(this.gameObject);		
+	}
 
 	void Start() 
 	{

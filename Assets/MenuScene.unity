@@ -954,10 +954,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 672864621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c298d9d45240242ba29bcf17c493a4, type: 3}
+  m_Script: {fileID: 11500000, guid: dc1d922154e80394dbc606f0a7ce5388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade: 5
+  fade: 4
   default_volume: 1
 --- !u!1 &699541646
 GameObject:
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081162156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dff40794550b8c4d80824a54a8caae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aec9140214291f4a99c5e7cc6d32efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1081162158
