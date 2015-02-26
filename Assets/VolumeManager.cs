@@ -4,13 +4,21 @@ using System.Collections;
 public class VolumeManager : MonoBehaviour 
 {
 	public float fade;
-	bool music_status = true;
+	public float default_volume = 1.0f;
+ 	bool music_status = true;
+
 
 	void Start() 
 	{
 		StartCoroutine(FadeInAudio (fade));
 	}
 
+	void Update()
+	{
+		audio.volume = default_volume;
+	}
+
+	//Slowly fade in the audio based on fade_timer seconds
 	IEnumerator FadeInAudio(float fade_timer)
 	{
 		float i = 0.0f;
@@ -23,10 +31,17 @@ public class VolumeManager : MonoBehaviour
 		}
 	}
 
-	public void Audio_Toggle()
+	//Mute and unmute audio
+	public void AudioToggle()
 	{
 		music_status = !music_status;
 		if(music_status == true) audio.Play();
 		else audio.Pause();
+	}
+	
+	//Adjust volume based on slider input
+	public void AdjustVolume(float slider_volume)
+	{
+		default_volume = slider_volume;
 	}
 }
