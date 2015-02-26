@@ -32,7 +32,7 @@ public class YellowCar : MonoBehaviour {
 		transform.rotation = Quaternion.RotateTowards(transform.rotation, q, step);
 //		transform.rotation = Quaternion.Slerp(transform.rotation, q, step);
 //		transform.position = Vector3.MoveTowards (transform.position, waypoint.position, step);
-		transform.position = Vector3.SmoothDamp (transform.position, waypoint.position, ref velocity,0.8f);
+		transform.position = Vector3.SmoothDamp (transform.position, waypoint.position, ref velocity, 1.0f*step);
 		if(targetDir.magnitude <= 10.0f  && i < waypoints.childCount) i++;
 		if (i == waypoints.childCount) i = 0;
 
