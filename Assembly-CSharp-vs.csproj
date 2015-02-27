@@ -51,6 +51,7 @@
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
      <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\PauseController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BirdsBehaviour.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BlobShadowController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CarCamera.cs" />

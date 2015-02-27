@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CSharpScripts\VolumeManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PauseController.cs">
     <Files>
-      <File FileName="Assets\Scripts\CSharpScripts\LevelController.cs" Line="6" Column="38" />
-      <File FileName="Assets\Scripts\CSharpScripts\VolumeManager.cs" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\CSharpScripts\VolumeManager.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\CSharpScripts\LevelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CSharpScripts\ChangeScenes.cs" Line="1" Column="1" />
+      <File FileName="Assets\PauseController.cs" Line="14" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

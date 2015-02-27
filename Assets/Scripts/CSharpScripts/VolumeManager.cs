@@ -5,7 +5,7 @@ public class VolumeManager : MonoBehaviour
 {
 	public float fade;
 	public float default_volume = 1.0f;
-	public static VolumeManager menu_id {get; private set;};
+	public static VolumeManager menu_id {get; private set;}
  	bool music_status = true;
 
 	void Awake()
@@ -24,6 +24,7 @@ public class VolumeManager : MonoBehaviour
 
 	void Start() 
 	{
+		audio.Play();
 		StartCoroutine(FadeInAudio (fade));
 	}
 
