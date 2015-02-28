@@ -24,6 +24,7 @@ public class CarLap : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+		print ("calling on trigger");
 
 		if( other.gameObject == finishLine)
 		{
@@ -31,8 +32,8 @@ public class CarLap : MonoBehaviour {
 			if(state == 0)
 			{
 				lapNum++;
-				UnityEngine.UI.Text s = theHud.GetComponent<Text>();
-				s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
+				UnityEngine.UI.Text[] s = theHud.GetComponentsInChildren<Text>();
+				s[0].text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
 				state = 1;
 				print ("Hit check 1");
 			}
@@ -40,8 +41,8 @@ public class CarLap : MonoBehaviour {
 			else if(state == 1)
 			{
 				lapNum--;
-				UnityEngine.UI.Text s = theHud.GetComponent<Text>();
-				s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
+				UnityEngine.UI.Text[] s = theHud.GetComponentsInChildren<Text>();
+				s[0].text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
 				state = 0;
 				print ("Hit check 1");
 			}

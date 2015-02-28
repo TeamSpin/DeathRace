@@ -47,9 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BackBump.cs" />
+     <Compile Include="Assets\CarAI.cs" />
      <Compile Include="Assets\Checkpoint1.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
+     <Compile Include="Assets\EasyRoads3D Free\scripts\EasyRoads3DTerrainID.cs" />
+     <Compile Include="Assets\EasyRoads3D Free\scripts\MarkerScript.cs" />
+     <Compile Include="Assets\EasyRoads3D Free\scripts\RoadObjectScript.cs" />
+     <Compile Include="Assets\EasyRoads3D Free\scripts\SurfaceScript.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
      <Compile Include="Assets\FrontBump.cs" />
      <Compile Include="Assets\LeftSide.cs" />
@@ -87,28 +92,37 @@
      <Compile Include="Assets\~AlternatePhysicsModel\Scripts\Wing.cs" />
      <None Include="Assets\Pro Standard Assets\Image Based\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Destroyed_city_FREE\Destroyed_city_FREE_Info.txt" />
+     <None Include="Assets\EasyRoads3D Free\Shaders\EasyRoads3D-Surface.shader" />
      <None Include="Assets\Shaders\ShadowProjection.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\MotionBlur.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\MinMaxReduction.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\ColorCorrectionEffect_26.shader" />
+     <None Include="Assets\EasyRoads3D Free\Shaders\EasyRoads3D Marker.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\GlowEffectDownsample_26.shader" />
+     <None Include="Assets\EasyRoads3D Free\Shaders\EasyRoads3D-Surface alpha.shader" />
      <None Include="Assets\Shield Pack Free\ReadMe.txt" />
      <None Include="Assets\Pro Standard Assets\Image Based\SSAOShader.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Shaders\Skidmarks.shader" />
+     <None Include="Assets\EasyRoads3D Free\Shaders\EasyRoads3D-Normal-Diffuse.shader" />
      <None Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\GrayscaleEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\SepiaToneEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\TwirlEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\VortexEffect.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\EasyRoads3D Free\_readme.txt" />
      <None Include="Assets\Wispy Sky\ReadMe.txt" />
+     <None Include="Assets\EasyRoads3D Free\Shaders\EasyRoads3D-Road-Edit-Mode.shader" />
      <None Include="Assets\Destroyed_city_FREE\Shaders\AlphaTest-DiffuseDoubleSide.shader" />
      <None Include="Assets\Pro Standard Assets\Image Based\EdgeDetectX.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="EasyRoads3D">
+ <HintPath>C:/Users/Andy/Documents/DeathRace/Assets/EasyRoads3D Free/lib/EasyRoads3D.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

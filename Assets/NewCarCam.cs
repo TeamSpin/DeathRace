@@ -25,9 +25,9 @@ public class NewCarCam : MonoBehaviour {
 		float car_speed = yc.get_speed();
 		print ( "vel magnitude : " + car_speed);
 		GameObject curr_target = target;
-		if(  Input.GetKey("a") || (Input.GetKey("left") && car_speed < turn_speed && !Input.GetKey("d")) )
+		if(  Input.GetKey("left") || (Input.GetKey("a") && car_speed < turn_speed && !Input.GetKey("d")) )
 			curr_target = targetLeft;
-		else if( Input.GetKey("d")||(Input.GetKey("right") && car_speed < turn_speed) )
+		else if( Input.GetKey("right")||(Input.GetKey("d") && car_speed < turn_speed) )
 			curr_target = targetRight;
 		else curr_target = target;
 

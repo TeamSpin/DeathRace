@@ -24,6 +24,15 @@ public class YellowCar : MonoBehaviour {
 	private bool is_boosting;
 	private float off_track_speed_boost;
 
+	private float curr_accel;
+	private float normal_accel;
+	private float boost_accel;
+
+	private bool cntrl_left;
+	private bool cntrl_right;
+	private bool cntrl_accel;
+	private bool cntrl_brake;
+
 	// Use this for initialization
 	void Start () {
 		off_track_speed = 8;
@@ -34,6 +43,10 @@ public class YellowCar : MonoBehaviour {
 		curr_wheel_angle_right = 0;
 		max_wheel_angle = 30;
 
+		normal_accel = 0.1f;
+		boost_accel = 0.3f;
+		curr_accel = normal_accel;
+
 	}
 
 	public float get_speed()
@@ -41,6 +54,17 @@ public class YellowCar : MonoBehaviour {
 		return Mathf.Abs (vel);
 	}
 
+	public void set_controller_speed( bool accel, bool brake)
+	{
+		cntrl_accel = accel;
+		cntrl_brake = brake;
+	}
+
+	public void set_controller_turn( bool left, bool right)
+	{
+		cntrl_left = left;
+		cntrl_right = right;
+	}
 
 	public void speed_boost()
 	{
@@ -52,17 +76,30 @@ public class YellowCar : MonoBehaviour {
 
 		boost_time += Time.deltaTime;
 
-		if(boost_time < 0.1f && !off_road) curr_max_speed += 0.1f;
-		else if(boost_time >= 0.1f && curr_max_speed > maxSpeed) curr_max_speed -= 1f;
+		if(boost_time < 0.1f && !off_road)
+		{
+			curr_max_speed += 0.1f;
+			curr_accel = boost_accel;
+		}
+		else if(boost_time >= 0.1f )
+		{
+			if( curr_max_speed > maxSpeed)
+				curr_max_speed -= 1f;
+			curr_accel = normal_accel;
+		}
 
 		//update velocity
-		if(Input.GetKey("up") && on_ground)
+		if((cntrl_accel ||  Input.GetKey("w")) && on_ground)
 		{
-			vel += 0.3f;
+			vel += curr_accel;
 		}
-		else if(Input.GetKey("down") && on_ground)
+		//brake or reverse
+		else if((cntrl_brake ||  Input.GetKey("s")) && on_ground)
 		{
-			vel -= 0.3f;
+			if( vel > 0)
+				vel -= curr_accel*2;
+			else if( vel <= 0)
+				vel -= curr_accel;
 		}
 		else if( on_ground)//drag
 		{
@@ -74,25 +111,25 @@ public class YellowCar : MonoBehaviour {
 
 		//adjust slower turning rate at high speeds
 		float rotation_angle = 1.0f;
-		if(Mathf.Abs(vel) > 15) rotation_angle = 0.7f;
-		else if(Mathf.Abs(vel) > 25) rotation_angle = 0.2f;
-		else if(Mathf.Abs(vel) > 35) rotation_angle = 0.05f;
-		else if(Mathf.Abs(vel) > 45) rotation_angle = 0.01f;
+		if(Mathf.Abs(vel) > 15) rotation_angle = 0.8f;
+		if(Mathf.Abs(vel) > 25) rotation_angle = 0.7f;
+		if(Mathf.Abs(vel) > 35) rotation_angle = 0.5f;
+		if(Mathf.Abs(vel) > 45) rotation_angle = 0.3f;
 		//steering input
-		if( Input.GetKey("left") && Mathf.Abs(vel) > 2 && on_ground)
+		if( ( cntrl_left || Input.GetKey("a") ) && Mathf.Abs(vel) > 2 && on_ground)
 		{
 
 			if( vel > 0)
-				transform.Rotate(Vector3.up, -1  * rotation_angle);
+				transform.Rotate(Vector3.up, -1  * rotation_angle );
 			else if(vel < 0)//other direction if reversing
-				transform.Rotate(Vector3.up, 1  * rotation_angle);
+				transform.Rotate(Vector3.up, 1  * rotation_angle );
 		}
-		else if( Input.GetKey("right") && Mathf.Abs(vel) > 2 && on_ground)
+		else if( (cntrl_brake||Input.GetKey("d")) && Mathf.Abs(vel) > 2 && on_ground)
 		{
 			if( vel > 0)
-				transform.Rotate(Vector3.up , 1 * rotation_angle);
+				transform.Rotate(Vector3.up , 1 * rotation_angle );
 			else if(vel < 0)//other direction if reversing
-				transform.Rotate(Vector3.up , -1 * rotation_angle);
+				transform.Rotate(Vector3.up , -1 * rotation_angle );
 		}
 
 		if( vel > curr_max_speed) vel = curr_max_speed;
@@ -102,8 +139,8 @@ public class YellowCar : MonoBehaviour {
 		if( Input.GetKey("space") && on_ground )
 		{
 			if( vel > -1 && vel < 1) vel = 0;
-			else if(vel > 0) vel = vel - 0.5f;
-			else if(vel < 0) vel = vel + 0.5f;
+			else if(vel > 0) vel = vel - 0.2f;
+			else if(vel < 0) vel = vel + 0.2f;
 		}
 
 
@@ -128,7 +165,7 @@ public class YellowCar : MonoBehaviour {
 		//front wheel steering
 		Vector3 pos = wheel.position;
 		wheel.position = Vector3.zero;
-		if( Input.GetKey("left") ){
+		if( cntrl_left || Input.GetKey("a") ){
 			//rotate to the left all at once
 			print ("left key, cur angle = " + curr_wheel_angle_right);
 			if( curr_wheel_angle_right == 0)
@@ -140,7 +177,7 @@ public class YellowCar : MonoBehaviour {
 
 			//sanity check for the steering angle
 		}
-		else if( Input.GetKey ("right" ) ){
+		else if( cntrl_right||Input.GetKey ("d" ) ){
 			if( curr_wheel_angle_right == 0)
 				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_right == -max_wheel_angle)
@@ -166,7 +203,7 @@ public class YellowCar : MonoBehaviour {
 		//front wheel steering
 		pos = wheel.position;
 		wheel.position = Vector3.zero;
-		if( Input.GetKey("left") ){
+		if( cntrl_left || Input.GetKey("a") ){
 			//rotate to the left all at once
 
 			if( curr_wheel_angle_left == 0)
@@ -178,7 +215,7 @@ public class YellowCar : MonoBehaviour {
 
 			//sanity check for the steering angle
 		}
-		else if( Input.GetKey ("right" ) ){
+		else if( cntrl_right||Input.GetKey ("d") ){
 			if( curr_wheel_angle_left == 0)
 				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_left == -max_wheel_angle)
@@ -237,6 +274,7 @@ public class YellowCar : MonoBehaviour {
 	{
 //		if(other == ground.collider)
 //			on_ground = false;
+		//layer 12 == road
 		if( other.gameObject.layer == 12 && boost_time >= 0.1f)
 		{
 			print ("off road");

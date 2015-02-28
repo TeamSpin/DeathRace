@@ -20,7 +20,7 @@ public class BackBump : MonoBehaviour {
 		return is_colliding;
 	}
 	
-	void OnCollisionEnter( Collider other)
+	void OnCollisionEnter( Collision other)
 	{
 		if(other.gameObject.layer == 8)
 		{
@@ -31,7 +31,7 @@ public class BackBump : MonoBehaviour {
 		}
 	}
 	
-	void OnColliseionExit( Collider other)
+	void OnCollisionExit( Collision other)
 	{
 		is_colliding = false;
 	}

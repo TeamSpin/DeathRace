@@ -5,6 +5,8 @@ Project("{E54DF652-95B6-8FD2-F764-D624BA70F3F0}") = "DeathRace", "Assembly-CShar
 EndProject
 Project("{E54DF652-95B6-8FD2-F764-D624BA70F3F0}") = "DeathRace", "Assembly-CSharp-vs.csproj", "{D8572470-F41D-390E-E03D-D56B5BDFBC31}"
 EndProject
+Project("{E54DF652-95B6-8FD2-F764-D624BA70F3F0}") = "DeathRace", "Assembly-CSharp-Editor-vs.csproj", "{2DFAE348-0BAF-6EF2-5CA9-201A2160BC52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{D8572470-F41D-390E-E03D-D56B5BDFBC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8572470-F41D-390E-E03D-D56B5BDFBC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8572470-F41D-390E-E03D-D56B5BDFBC31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DFAE348-0BAF-6EF2-5CA9-201A2160BC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFAE348-0BAF-6EF2-5CA9-201A2160BC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFAE348-0BAF-6EF2-5CA9-201A2160BC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFAE348-0BAF-6EF2-5CA9-201A2160BC52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																									GlobalSection(MonoDevelopProperties) = preSolution
+																																																		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
