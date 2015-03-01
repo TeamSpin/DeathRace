@@ -51,7 +51,6 @@
      <Compile Include="Assets\Destroyed_city_FREE\Standard Assets\Water (Pro Only)\Sources\Scripts\Water.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\Button.cs" />
      <Compile Include="Assets\NewBehaviourScript.cs" />
-     <Compile Include="Assets\PauseController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BirdsBehaviour.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\BlobShadowController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\CarCamera.cs" />
@@ -66,6 +65,8 @@
      <Compile Include="Assets\Scripts\CSharpScripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\MirrorReflection.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\PauseController.cs" />
+     <Compile Include="Assets\Scripts\CSharpScripts\PauseDisplay.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PickupSpawner.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\CSharpScripts\PlayerWeaponController.cs" />
