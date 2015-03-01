@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AI.cs" />
      <Compile Include="Assets\BackBump.cs" />
      <Compile Include="Assets\CarAI.cs" />
      <Compile Include="Assets\Checkpoint1.cs" />
@@ -122,7 +123,7 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="EasyRoads3D">
- <HintPath>C:/Users/Andy/Documents/DeathRace/Assets/EasyRoads3D Free/lib/EasyRoads3D.dll</HintPath>
+ <HintPath>C:/Users/Gabriel/Documents/GitHub/DeathRace/Assets/EasyRoads3D Free/lib/EasyRoads3D.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

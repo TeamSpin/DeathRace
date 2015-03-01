@@ -30,13 +30,6 @@ public class CarAI : MonoBehaviour {
 	void FixedUpdate() {
 		targetHeading = waypoints[targetwaypoint].position - xform.position;
 		currentHeading = Vector3.Slerp (currentHeading, targetHeading, damping);
-		//   	 float changeX = (Mathf.Abs (waypoints [targetwaypoint].position.x - xform.position.x)) / xform.position.x;
-		//   	 float changeZ = (Mathf.Abs (waypoints [targetwaypoint].position.z - xform.position.z)) / xform.position.z;
-		//   	 if (changeX / changeZ > 0.5 && changeX / changeZ < 2)
-		//   		 speed = 2.0f;
-		//   	 else {
-		//   		 speed = 1.5f;
-		//   	 }
 	}
 	
 	// Update is called once per frame
