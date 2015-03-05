@@ -8,6 +8,11 @@ TagManager:
   - Defense
   - Fences
   - 
+  - DefenseCounter
+  - EnemyHealthSlider
+  - WeaponCounter
+  - UserHealthSlider
+  - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
   Builtin Layer 2: Ignore Raycast
@@ -21,7 +26,7 @@ TagManager:
   User Layer 10: EnemyCars
   User Layer 11: Grass
   User Layer 12: Road
-  User Layer 13: 
+  User Layer 13: Jump
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 

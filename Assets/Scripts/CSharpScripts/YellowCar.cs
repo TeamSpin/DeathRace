@@ -15,7 +15,7 @@ public class YellowCar : MonoBehaviour {
 	private float revSpeed;
 	private float vel = 0;
 	private bool on_ground = true;
-	private bool off_road = true;
+	private bool off_road = false;
 	private float curr_max_speed;
 	private float curr_wheel_angle_left;
 	private float curr_wheel_angle_right;
@@ -33,11 +33,15 @@ public class YellowCar : MonoBehaviour {
 	private bool cntrl_accel;
 	private bool cntrl_brake;
 
+	private bool on_ramp = false;
+
+	private int num_collisions = 0;
+
 	// Use this for initialization
 	void Start () {
 		off_track_speed = 8;
 		off_track_speed_boost = 16;
-		curr_max_speed = off_track_speed;
+		curr_max_speed = maxSpeed;
 		revSpeed = curr_max_speed / 3;
 		curr_wheel_angle_left = 0;
 		curr_wheel_angle_right = 0;
@@ -46,6 +50,8 @@ public class YellowCar : MonoBehaviour {
 		normal_accel = 0.1f;
 		boost_accel = 0.3f;
 		curr_accel = normal_accel;
+
+		off_road = false;
 
 	}
 
@@ -74,6 +80,12 @@ public class YellowCar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if( num_collisions == 0) //to avoid the fence collision problem, dont include fences in the count
+		{
+			on_ground = false;
+		}
+		else on_ground = true;
+
 		boost_time += Time.deltaTime;
 
 		if(boost_time < 0.1f && !off_road)
@@ -89,7 +101,8 @@ public class YellowCar : MonoBehaviour {
 		}
 
 		//update velocity
-		if((cntrl_accel ||  Input.GetKey("w")) && on_ground)
+		     //you are pushing the gas           you are on the ground    you are not pushing the brakes
+		if( (cntrl_accel ||  Input.GetKey("w")) && on_ground && !(cntrl_brake ||Input.GetKey("s")) )
 		{
 			vel += curr_accel;
 		}
@@ -148,12 +161,21 @@ public class YellowCar : MonoBehaviour {
 		{
 			transform.Translate(Vector3.forward * Time.deltaTime * vel);
 		}
+		else
+		{
+			//rigidbody.velocity = transform.forward * vel;
+			transform.Translate(Vector3.forward * Time.deltaTime * vel);
+			/*if(vel > 0)
+				vel -= 0.1f;
+			transform.Translate(new Vector3(0,-1,0) *Time.deltaTime);*/
+
+		}
 
 		//output speed
 		UnityEngine.UI.Text s = myHUD.GetComponentInChildren<Text>();
 		//s.text = "Lap " + lapNum.ToString() + " / " + maxLaps.ToString();
 		int speed = (int)Mathf.Abs(vel);
-		print (speed.ToString());
+		//print (speed.ToString());
 		s.text = speed.ToString() + " mph";
 
 		//animate the wheels
@@ -163,34 +185,51 @@ public class YellowCar : MonoBehaviour {
 		wheel.Rotate(Vector3.right, vel);
 
 		//front wheel steering
+
+		//front right wheel only
+
 		Vector3 pos = wheel.position;
 		wheel.position = Vector3.zero;
 		if( cntrl_left || Input.GetKey("a") ){
 			//rotate to the left all at once
-			print ("left key, cur angle = " + curr_wheel_angle_right);
+			//print ("left key, cur angle = " + curr_wheel_angle_right);
 			if( curr_wheel_angle_right == 0)
-				wheel.RotateAround( wheel.renderer.bounds.center, Vector3.up,- max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up,- max_wheel_angle);
 			else if( curr_wheel_angle_right == max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, Vector3.up,-2 * max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up,-2 * max_wheel_angle);
 
 			curr_wheel_angle_right = -max_wheel_angle;
 
 			//sanity check for the steering angle
+
+
+
 		}
 		else if( cntrl_right||Input.GetKey ("d" ) ){
 			if( curr_wheel_angle_right == 0)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_right == -max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up,2 * max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up,2 * max_wheel_angle);
 			
 			curr_wheel_angle_right = max_wheel_angle;
 		}
 		else {
+
 			if( curr_wheel_angle_right == -max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_right == max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, -max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, -max_wheel_angle);
 			curr_wheel_angle_right = 0;
+
+			//sanity check for the steering angle
+			//print ("Wheel right vector : " + wheel.right.x * 10 + " " + wheel.right.y * 10 + " " + wheel.right.z * 10);
+
+			//if( wheel.right != Vector3.right)
+			{
+			//	wheel.right = Vector3.right;
+			}
+
+
 		}
 		wheel.position = pos;
 		
@@ -201,15 +240,18 @@ public class YellowCar : MonoBehaviour {
 		wheel = transform.Find("CC_ME_Wheel_FL");
 		wheel.Rotate(Vector3.right, vel);
 		//front wheel steering
+
+		//front left wheel only
+
 		pos = wheel.position;
 		wheel.position = Vector3.zero;
 		if( cntrl_left || Input.GetKey("a") ){
 			//rotate to the left all at once
 
 			if( curr_wheel_angle_left == 0)
-				wheel.RotateAround( wheel.renderer.bounds.center, Vector3.up,- max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center,this.transform.up,- max_wheel_angle);
 			else if( curr_wheel_angle_left == max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, Vector3.up,-2 * max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up,-2 * max_wheel_angle);
 			
 			curr_wheel_angle_left = -max_wheel_angle;
 
@@ -217,17 +259,17 @@ public class YellowCar : MonoBehaviour {
 		}
 		else if( cntrl_right||Input.GetKey ("d") ){
 			if( curr_wheel_angle_left == 0)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_left == -max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up,2 * max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up,2 * max_wheel_angle);
 			
 			curr_wheel_angle_left = max_wheel_angle;
 		}
 		else {
 			if( curr_wheel_angle_left == -max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, max_wheel_angle);
 			else if( curr_wheel_angle_left == max_wheel_angle)
-				wheel.RotateAround( wheel.renderer.bounds.center, transform.up, -max_wheel_angle);
+				wheel.RotateAround( wheel.renderer.bounds.center, this.transform.up, -max_wheel_angle);
 			curr_wheel_angle_left = 0;
 		}
 		wheel.position = pos;
@@ -261,33 +303,94 @@ public class YellowCar : MonoBehaviour {
 	{
 //		if(other == ground.collider)
 //			on_ground = true;
-		if( other.gameObject.layer == 12)
+		/*if( other.gameObject.layer == 12)
 		{
 			print ("collided with road");
 			curr_max_speed = maxSpeed;
 			revSpeed = curr_max_speed / 3;
 			off_road = false;
-		}
+		}*/
+
 	}
 
 	void OnCollisionExit(Collision other)
 	{
+		num_collisions--;
+
 //		if(other == ground.collider)
 //			on_ground = false;
 		//layer 12 == road
-		if( other.gameObject.layer == 12 && boost_time >= 0.1f)
+		//exiting the road
+		if( other.gameObject.layer == 12  && !on_ramp && boost_time >= 0.1f)
 		{
-			print ("off road");
+			print ("exiting the road");
 			curr_max_speed = off_track_speed;
 			revSpeed = curr_max_speed / 3;
 			off_road = true;
 		}
-		else if( other.gameObject.layer == 12 && boost_time < 0.1f)
+		else if( other.gameObject.layer == 12  && !on_ramp && boost_time < 0.1f)
 		{
+			print ("exiting the road");
 			curr_max_speed = off_track_speed_boost;
 			revSpeed = curr_max_speed / 3;
 			off_road = true;
 		}
+
+		//layer 11 is grass
+		//exiting the grass
+		if( other.gameObject.layer == 11)
+		{
+			print ("exiting the grass");
+			curr_max_speed = maxSpeed;
+			revSpeed = curr_max_speed / 3;
+			off_road = false;
+		}
+
+		//ramp
+		if(other.gameObject.layer == 13)
+		{
+			on_ramp = false;
+		}
+
+	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		num_collisions++;
+		//entering the road
+		if( other.gameObject.layer == 12)
+		{
+			print ("entered the road, max speed = " + maxSpeed);
+			off_road = false;
+			curr_max_speed = maxSpeed;
+			revSpeed = curr_max_speed / 3;
+		}
+
+		//ramp
+		else if( other.gameObject.layer == 13)
+		{
+			off_road = false;
+			on_ramp = true;
+		}
+		//layer 11 is grass
+		//heading off road
+//		else if(other.gameObject.layer == 11 && boost_time >= 0.1f)
+//		{
+//			print ("entered the grass");
+//			curr_max_speed = off_track_speed;
+//			revSpeed = curr_max_speed / 3;
+//			off_road = true;
+//		}
+//
+//		//you are currently boosting
+//		else if( other.gameObject.layer == 11 && boost_time < 0.1f)
+//		{
+//			print ("entered the grass");
+//			curr_max_speed = off_track_speed_boost;
+//			revSpeed = curr_max_speed / 3;
+//			off_road = true;
+//		}
+
 
 	}
 
