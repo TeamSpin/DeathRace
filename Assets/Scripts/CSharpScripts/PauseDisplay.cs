@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -15,8 +15,7 @@ public class PauseDisplay : MonoBehaviour
 	void Start()
 	{
 		GameObject pausecontrol = GameObject.Find("PauseManager");
-		pausescript = pausecontrol.GetComponent<PauseController>();
-		
+		pausescript = pausecontrol.GetComponent<PauseController>();	
 	}
 
 	// Update is called once per frame
