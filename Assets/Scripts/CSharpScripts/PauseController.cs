@@ -9,11 +9,20 @@ public class PauseController : MonoBehaviour
 	public Font button_font;
 	public Color button_color;
 	public bool is_paused = false;
+	private bool pressed_before = false;
 	
-	// Update is called once per frame
+	// check for escape key to pause as well as debounce additional keystrokes
 	void Update () 
 	{
-		if(Input.GetKey(KeyCode.Escape)) is_paused = CheckPause();
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			if(!pressed_before) is_paused = CheckPause();
+			pressed_before = true;
+		}
+		else 
+		{	
+			pressed_before = false;
+		}
 	}
 
 	void OnGUI()

@@ -6,6 +6,7 @@ public class PauseDisplay : MonoBehaviour
 {	
 	PauseController pausescript;
 	public Text pause;
+	public Image bg;
 
 	void Awake()
 	{
@@ -25,10 +26,12 @@ public class PauseDisplay : MonoBehaviour
 		if(display_pause)
 		{
 			pause.gameObject.SetActive(true);
+			bg.gameObject.SetActive(true);
 		}
 		else 
 		{
 			pause.gameObject.SetActive(false);		
+			bg.gameObject.SetActive(false);
 		}
 	}
 }
