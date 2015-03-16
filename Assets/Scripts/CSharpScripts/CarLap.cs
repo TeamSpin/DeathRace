@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CarLap : MonoBehaviour {
 
-	int lapNum = 0;
+	public int lapNum = 0;
 	int state = 0;
 
 	public GameObject finishLine;
@@ -18,7 +18,6 @@ public class CarLap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	void OnTriggerEnter(Collider other)

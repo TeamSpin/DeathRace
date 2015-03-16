@@ -211,7 +211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Track 3
+  m_Text: 'Track 3 : The Battle Arena of Death'
 --- !u!222 &211694360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Track 2
+  m_Text: 'Track 2 : Tatooine'
 --- !u!222 &2138199864
 CanvasRenderer:
   m_ObjectHideFlags: 0

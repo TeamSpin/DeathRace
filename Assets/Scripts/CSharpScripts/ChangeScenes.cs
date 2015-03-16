@@ -7,4 +7,8 @@ public class ChangeScenes : MonoBehaviour
 	{
 		Application.LoadLevel (scene);
 	}
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }

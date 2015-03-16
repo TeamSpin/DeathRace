@@ -7,18 +7,19 @@ public class PauseDisplay : MonoBehaviour
 	PauseController pausescript;
 	public Text pause;
 	public Image bg;
-
+	
 	void Awake()
 	{
 		pause.gameObject.SetActive(false);
+		bg.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
 	}
-
+	
 	void Start()
 	{
 		GameObject pausecontrol = GameObject.Find("PauseManager");
 		pausescript = pausecontrol.GetComponent<PauseController>();	
 	}
-
+	
 	// Update is called once per frame
 	void Update () 
 	{

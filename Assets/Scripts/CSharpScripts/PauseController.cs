@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PauseController : MonoBehaviour 
 {
-	public int current_level;
+	private string current_level = "1";
 	private int button_width = 200;
 	private int button_height = 50;
 	public Font button_font;
@@ -11,6 +11,11 @@ public class PauseController : MonoBehaviour
 	public bool is_paused = false;
 	private bool pressed_before = false;
 	
+	void Awake()
+	{
+		current_level = Application.loadedLevelName;
+	}
+
 	// check for escape key to pause as well as debounce additional keystrokes
 	void Update () 
 	{
